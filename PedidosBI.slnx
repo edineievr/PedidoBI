@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PedidosBI.Domain/PedidosBI.Domain.csproj" />
+  <Project Path="PedidosBI.Infrastructure/PedidosBI.Infrastructure.csproj" />
+</Solution>
