@@ -29,7 +29,9 @@ namespace PedidosBI.Infrastructure.Repositories
 
         public List<Pedido> GetFaturadosNoPeriodo(DateTime inicio, DateTime fim)
         {
-            return pedidos.Where(p => p.Status == Status.Faturado && p.DataFaturamento >= inicio && p.DataFaturamento <= fim).ToList();
+            var faturados = pedidos.Where(p => p.Status == Status.Faturado && p.DataFaturamento >= inicio && p.DataFaturamento <= fim).ToList();
+            Console.WriteLine($"[PedidoRepository] GetFaturadosNoPeriodo inicio={inicio:O} fim={fim:O} totalPedidos={pedidos.Count} faturadosEncontrados={faturados.Count}");
+            return faturados;
         }
     }
 }

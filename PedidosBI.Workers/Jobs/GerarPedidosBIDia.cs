@@ -15,7 +15,7 @@ namespace PedidosBI.Workers.Jobs
             _service = service;
         }
 
-        [TickerFunction("GerarPedidosBIDia", cronExpression: "* * * * * *")]
+        [TickerFunction("GerarPedidosBIDiaJob", cronExpression: "*/10 * * * * *")]
         public Task GerarPedidosBIDiaJob(TickerFunctionContext context, CancellationToken cancellationToken)
         {
             Console.WriteLine("Job iniciado às: " + DateTime.Now);
@@ -23,6 +23,8 @@ namespace PedidosBI.Workers.Jobs
             _service.GerarPedidosBIDoDiaPorData();
 
             Console.WriteLine("Job finalizado às: " + DateTime.Now);
+
+            Console.WriteLine("EXECUTOU: " + DateTime.UtcNow);
 
             return Task.CompletedTask;
         }

@@ -9,5 +9,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
+    <PackageReference Include="TickerQ" Version="10.1.1" />
+    <PackageReference Include="TickerQ.Dashboard" Version="10.1.1" />
+    <PackageReference Include="TickerQ.EntityFrameworkCore" Version="10.1.1" />
+    <PackageReference Include="TickerQ.Utilities" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PedidosBI.Domain\PedidosBI.Domain.csproj" />
+    <ProjectReference Include="..\PedidosBI.Infrastructure\PedidosBI.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
