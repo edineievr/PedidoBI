@@ -15,7 +15,7 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddDbContext<TickerQDbContext>();
 
 //Registrar TickerQ
-builder.Services.AddTickerQ().AddEntityFrameworkNpgsql();
+builder.Services.AddTickerQ().AddNpgsql<TickerQDbContext>(builder.Configuration.GetConnectionString("TickerQ")).AddEntityFrameworkNpgsql();
 
 //Outros serviços
 builder.Services.AddScoped<PedidoBIService>();
