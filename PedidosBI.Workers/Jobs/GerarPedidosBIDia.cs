@@ -15,17 +15,22 @@ namespace PedidosBI.Workers.Jobs
             _service = service;
         }
 
-        [TickerFunction("GerarPedidosBIDiaJob", cronExpression: "*/10 * * * * *")]
+        [TickerFunction("GerarPedidosBIDiaJob", cronExpression: "0 */5 * * * *")]
         public Task GerarPedidosBIDiaJob(TickerFunctionContext context, CancellationToken cancellationToken)
         {
             Console.WriteLine("Job iniciado às: " + DateTime.Now);
 
-            _service.GerarPedidosBIDoDiaPorData();
+            _service.GerarPedidosBIDoDiaPorData();            
 
-            Console.WriteLine("Job finalizado às: " + DateTime.Now);
+            Console.WriteLine("Job finalizado às: " + DateTime.Now);        
 
-            Console.WriteLine("EXECUTOU: " + DateTime.UtcNow);
+            return Task.CompletedTask;
+        }
 
+        [TickerFunction("Teste", cronExpression: "*/10 * * * * *")]
+        public Task Teste(TickerFunctionContext context, CancellationToken cancellationToken)
+        {
+            Console.WriteLine("Teste");
             return Task.CompletedTask;
         }
     }
