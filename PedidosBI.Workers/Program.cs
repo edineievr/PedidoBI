@@ -3,24 +3,24 @@ using Microsoft.Extensions.DependencyInjection;
 using PedidosBI.Domain.Application.Services;
 using PedidosBI.Domain.Contracts;
 using PedidosBI.Infrastructure;
-using PedidosBI.Infrastructure.Context;
 using PedidosBI.Infrastructure.Repositories;
 using PedidosBI.Workers.Jobs;
 using TickerQ.DependencyInjection;
+using TickerQ.EntityFrameworkCore.DbContextFactory;
 
 var builder = Host.CreateApplicationBuilder(args);
 
 //builder.Services.AddHostedService<Worker>();
-builder.Services.AddScoped<PedidoBIService>();
+//Registrar DbContext
+builder.Services.AddDbContext<TickerQDbContext>();
 
+//Registrar TickerQ
+builder.Services.AddTickerQ().AddEntityFrameworkNpgsql();
+
+//Outros serviços
+builder.Services.AddScoped<PedidoBIService>();
 builder.Services.AddSingleton<IPedidoRepository, PedidoRepository>();
 builder.Services.AddSingleton<IPedidoBIRepository, PedidoBIRepository>();
-
-//builder.Services.AddDbContext<TickerQContext>(options =>
-//                                              options.UseNpgsql("Host=localhost;Port=5432;Database=PedidosBI_Worker;Username=postgres;Password=123"));
-
-builder.Services.AddTickerQ()/*.AddEntityFrameworkNpgsql()*/;
-
 builder.Services.AddScoped<GerarPedidosBIDia>();
 
 
